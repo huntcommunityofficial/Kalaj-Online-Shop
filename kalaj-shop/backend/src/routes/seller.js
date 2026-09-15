@@ -4,7 +4,6 @@ const { authRequired, requireRole } = require('../middleware/auth');
 
 router.use(authRequired, requireRole('SELLER'));
 
-// یافتن پروفایل فروشنده؛ اگر به هر دلیلی (مثل ری‌ست شدن دیتابیس) وجود نداشت، خطای واضح می‌دهد
 async function getSellerOrFail(userId) {
   const seller = await prisma.seller.findUnique({ where: { userId } });
   if (!seller) {
